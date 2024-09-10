@@ -10,11 +10,11 @@ import machine
 ADC2 = 28
 
 led = machine.Pin("LED", machine.Pin.OUT)
-adc = machine.ADC(ADC2)
+adc = machine.ADC(28) #adc28
 
 blink_period = 0.1
 
-max_bright = 20000
+max_bright = 20000 #play with these
 min_bright = 10000
 
 
@@ -36,10 +36,11 @@ while True:
     So we use function clip()
     """
 
-    duty_cycle = clip((value - min_bright) / (max_bright - min_bright))
+    duty_cycle = clip((value - min_bright) / (max_bright - min_bright))# want min bright to equal value at low, and max bright to equal value at high
+
 
     led.high()
-    time.sleep(blink_period * duty_cycle)
+    time.sleep(blink_period * duty_cycle)#we want basically full bkink period sleep when high and zero sleep when low i.e, duty_cycle = 1 and 0
 
     led.low()
     time.sleep(blink_period * (1 - duty_cycle))
