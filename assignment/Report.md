@@ -1,12 +1,12 @@
 Excersize 1:
 	1. What are the "max_bright" and "min_bright" values you found?
-The max-bright value found was 30000, the min-bright value was 6300. The tests were being done in a fairly lit room but not bright, with the blinds drawn.
-- [Link to light demo]().
+The max-bright value found was 55000, the min-bright value was 1100. The tests were being done in a fairly lit room but not bright, with the blinds drawn.
+- [Link to light demo](https://drive.google.com/file/d/1W-zhcyNIjvdQbRYpcltr392ZtkWKOine/view?usp=sharing).
 
 Excersize 2:
 	2. Using the code in exercise_sound.py as a starting point, modify the code to play several notes in a sequence from a song of your choosing.
 We chose to play the first few notes of the birthday song:
-- [Link to song demo]().
+- [Link to song demo](https://drive.google.com/file/d/19Uq9blisrXyyjdNyYGA63GBbGnnNggkw/view?usp=sharing).
 
 Excersize 3:
 	1. Edit the exercise_game.py code to compute average, minimum, maximum response time for 10 flashes total.

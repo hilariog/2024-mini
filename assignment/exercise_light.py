@@ -14,8 +14,8 @@ adc = machine.ADC(ADC2) #adc28
 
 blink_period = 0.1
 
-max_bright = 30000 #play with these
-min_bright = 6300
+max_bright = 55000 #play with these
+min_bright = 1100
 
 
 def clip(value: float) -> float:
@@ -44,3 +44,4 @@ while True:
 
     #led.low()
     time.sleep(blink_period * (1 - duty_cycle))
+
