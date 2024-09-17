@@ -1,6 +1,6 @@
 Excersize 1:
 	1. What are the "max_bright" and "min_bright" values you found?
-The max-bright value found was 88000, the min-bright value was 940. The tests were being done in a fairly lit room but not bright, with the blinds drawn.
+The max-bright value found was 30000, the min-bright value was 6300. The tests were being done in a fairly lit room but not bright, with the blinds drawn.
 - [Link to light demo]().
 
 Excersize 2:
