@@ -74,8 +74,8 @@ def scorer(t: list[int | None]) -> None:
 if __name__ == "__main__":
     # using "if __name__" allows us to reuse functions in other script files
 
-    led = Pin("LED", Pin.OUT)
-    button = Pin(16, Pin.IN, Pin.PULL_UP)
+    led = Pin("LED", Pin.OUT) #setting LED pin to output
+    button = Pin(16, Pin.IN, Pin.PULL_UP) #setting button pin to input
 
     t: list[int | None] = []
 
@@ -86,17 +86,18 @@ if __name__ == "__main__":
 
         led.high()
 
-        tic = time.ticks_ms()
+        tic = time.ticks_ms()#start time
         t0 = None
-        while time.ticks_diff(time.ticks_ms(), tic) < on_ms:
-            if button.value() == 0:
-                t0 = time.ticks_diff(time.ticks_ms(), tic)
+        while time.ticks_diff(time.ticks_ms(), tic) < on_ms:#diff between start time and cur time less than length of light pulse(else we missed the light)
+            if button.value() == 0:#does this mean if button clicked value = 0?
+                t0 = time.ticks_diff(time.ticks_ms(), tic)#when button clicked t0 stores time diff (as lomng as light is still on)
                 led.low()
                 break
-        t.append(t0)
+        t.append(t0)#t is list holding all press times, report average min and max after this loop
 
         led.low()
+    #it should have flashed 10 times and all valid inputs in t, calc average and min and maxin scorer:
 
     blinker(5, led)
 
-    scorer(t)
+    scorer(t)# this function adapted to report avg min and max.
