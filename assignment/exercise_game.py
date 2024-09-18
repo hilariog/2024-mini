@@ -34,8 +34,8 @@ def connect_to_internet(ssid, password):
       
 connect_to_internet('BU Guest (unencrypted)', '')
 
-ufirestore.set_project_id("miniproject-efe95")
-ufirestore.set_access_token("https://oauth2.googleapis.com/token")
+ufirestore.set_project_id("")
+ufirestore.set_access_token("")
 
 document_path = "ResponseData"
 
