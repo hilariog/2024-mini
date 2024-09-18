@@ -1,7 +1,7 @@
 Excersize 1:
 	1. What are the "max_bright" and "min_bright" values you found?
-The max-bright value found was 55000, the min-bright value was 1100. The tests were being done in a fairly lit room but not bright, with the blinds drawn. We had some troubles with the onboard LED. We are sure the Pico W was running the correct firmware, and we tried referencing the onboard LED pin directly (25) and we tried running a script meant solely to turn on the onboard LED. None of these work, so we suspect some malfunction. However in the demo you can see that the ADC input is working and responding to input into the light sensor. The monitor shows that the value decreases to 1100 when we shined a light on the sensor, and increases to 55000 when I hold it into my pant.
-- [Link to light demo](https://drive.google.com/file/d/1W-zhcyNIjvdQbRYpcltr392ZtkWKOine/view?usp=sharing).
+The max-bright value found was 55000, the min-bright value was 1100. The tests were being done in a fairly lit room but not bright, with the blinds drawn. We had some troubles with the onboard LED. Therefore we wired in an external LED, and the demo shows it functioning with that.
+- [Link to light demo](https://drive.google.com/file/d/17MeHfr6wlNzNbElTnYITuq4DP0t12vzD/view?usp=sharing).
 
 Excersize 2:
 	2. Using the code in exercise_sound.py as a starting point, modify the code to play several notes in a sequence from a song of your choosing.
