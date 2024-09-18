@@ -3,10 +3,41 @@ Response time - single-threaded
 """
 
 from machine import Pin
-import time
 import random
 import json
+import time
+import network
+import ufirestore
 
+def connect_to_internet(ssid, password):
+    # Pass in string arguments for ssid and password
+    
+    # Just making our internet connection
+    wlan = network.WLAN(network.STA_IF)
+    wlan.active(True)
+    wlan.connect(ssid, password)
+    
+    # Wait for connect or fail
+    max_wait = 10
+    while max_wait > 0:
+      if wlan.status() < 0 or wlan.status() >= 3:
+        break
+      max_wait -= 1
+      print('waiting for connection...')
+      time.sleep(1)
+    # Handle connection error
+    if wlan.status() != 3:
+       raise RuntimeError(wlan.status())
+    else:
+      print('connected')
+      status = wlan.ifconfig()
+      
+connect_to_internet('BU Guest (unencrypted)', '')
+
+ufirestore.set_project_id("miniproject-efe95")
+ufirestore.set_access_token("https://oauth2.googleapis.com/token")
+
+document_path = "ResponseData"
 
 N: int = 10
 sample_ms = 10.0
@@ -57,11 +88,17 @@ def scorer(t: list[int | None]) -> None:
     # add key, value to this dict to store the minimum, maximum, average response time
     # and score (non-misses / total flashes) i.e. the score a floating point number
     # is in range [0..1]
-    average_response = sum(t_good) / len(t_good)
-    min_value = min(t_good)
-    max_value = max(t_good)
-    score = sum(t_good) / N
-
+    if misses<=9:
+        average_response = sum(t_good) / len(t_good)
+        min_value = min(t_good)
+        max_value = max(t_good)
+        score = sum(t_good) / N
+    else:
+        average_response=0
+        min_value = 0
+        max_value = 0
+        score = 0
+    
     data = {}
     data['average response'] = average_response
     data['minimum'] = min_value
@@ -80,12 +117,12 @@ def scorer(t: list[int | None]) -> None:
     print("write", filename)
 
     write_json(filename, data)
-
+    ufirestore.create(document_path, filename, document_id=None, bg=True, cb=None)
 
 if __name__ == "__main__":
     # using "if __name__" allows us to reuse functions in other script files
 
-    led = Pin("LED", Pin.OUT) #setting LED pin to output
+    led = Pin(17, Pin.OUT) #setting LED pin to output
     button = Pin(16, Pin.IN, Pin.PULL_UP) #setting button pin to input
 
     t: list[int | None] = []
